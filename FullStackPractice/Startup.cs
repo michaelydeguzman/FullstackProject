@@ -20,6 +20,7 @@ using System.IO;
 using FluentValidation;
 using FullStackPractice.Services.Validations;
 using FullStackPractice.Persistence.Models;
+using Microsoft.OpenApi.Models;
 
 namespace FullStackPractice
 {
@@ -70,6 +71,10 @@ namespace FullStackPractice
             services.AddTransient<IEmployeeService, EmployeeService>();
 
             services.AddRazorPages();
+
+
+            services.AddSwaggerGen(c =>
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,6 +111,11 @@ namespace FullStackPractice
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(),"Photos")),
                 RequestPath="/Photos"
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V2");
             });
         }
     }

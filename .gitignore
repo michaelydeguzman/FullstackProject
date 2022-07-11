@@ -545,3 +545,14 @@ FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/xunit.runner.visualstudio.do
 .vs/FullStackPractice/FileContentIndex/
 FullStackPractice/bin/Debug/netcoreapp3.1/FluentValidation.dll
 .vs/FullStackPractice/v17/TestStore/0/001.testlog
+FullStackPractice/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/Microsoft.Web.Infrastructure.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/Swashbuckle.Core.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/System.Net.Http.Formatting.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/System.Web.Http.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/System.Web.Http.WebHost.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/WebActivatorEx.dll
+FullStackPractice/obj/Debug/netcoreapp3.1/FullStackPractice.Web.MvcApplicationPartsAssemblyInfo.cs
