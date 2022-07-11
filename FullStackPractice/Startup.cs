@@ -62,7 +62,8 @@ namespace FullStackPractice
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Validators
-            services.AddTransient<AbstractValidator<Department>, DepartmentValidator>();
+            services.AddTransient<UpdateDepartmentValidator>();
+            services.AddTransient<DeleteDepartmentValidator>();
 
             // Services
             services.AddTransient<IDepartmentService, DepartmentService>();

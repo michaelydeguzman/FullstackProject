@@ -4,6 +4,7 @@ using FullStackPractice.Business.Interfaces;
 using FullStackPractice.Persistence;
 using FullStackPractice.Persistence.Models;
 using FullStackPractice.Repository.Interfaces;
+using FullStackPractice.Services.Validations;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace FullStackPractice.UnitTests.ServicesTests
                 new Department { DepartmentId = 2, DepartmentName = "Test Department 2" }
             };
 
-            var mockDepartmentValidator = new Mock<AbstractValidator<Department>>();
+            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>();
+            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>();
 
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
             mockDepartmentRepository.Setup(mdr => mdr.GetAllAsync()).ReturnsAsync(expected).Verifiable();
@@ -33,7 +35,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockDepartmentValidator.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockUpdateDepartmentValidator.Object, mockDeleteDepartmentValidator.Object);
             var actual = await sut.GetAllDepartmentsAsync();
 
             // Assert
@@ -51,7 +53,8 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var departmentId = 1;
             var expected = new Department { DepartmentId = departmentId, DepartmentName = "Test Department 1" };
 
-            var mockDepartmentValidator = new Mock<AbstractValidator<Department>>();
+            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>();
+            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>();
 
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
             mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(departmentId)).ReturnsAsync(expected).Verifiable();
@@ -60,7 +63,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockDepartmentValidator.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockUpdateDepartmentValidator.Object, mockDeleteDepartmentValidator.Object);
             var actual = await sut.GetDepartmentByIdAsync(departmentId);
 
             // Assert

@@ -32,7 +32,6 @@ namespace FullStackPractice.Controllers
             return new JsonResult(departments);
         }
 
-
         [HttpGet]
         [Route("{id}")]
         public async Task<JsonResult> GetDepartmentById(int id)
@@ -82,8 +81,6 @@ namespace FullStackPractice.Controllers
             {
                 return BadRequest();
             }
-
-
         }
     }
 }
