@@ -6,16 +6,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FullStackPractice.Services.Validations;
+using FluentValidation;
 
 namespace FullStackPractice.Business
 {
     public class DepartmentService : IDepartmentService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly AbstractValidator<Department> _departmentValidator;
 
-        public DepartmentService(IUnitOfWork unitOfWork)
+        public DepartmentService(IUnitOfWork unitOfWork, AbstractValidator<Department> departmentValidator)
         {
             _unitOfWork = unitOfWork;
+            _departmentValidator = departmentValidator;
         }
 
         public async Task<List<Department>> GetAllDepartmentsAsync()
@@ -30,16 +34,19 @@ namespace FullStackPractice.Business
 
         public async Task CreateDepartmentAsync(Department department)
         {
-            var departments = (List<Department>)await _unitOfWork.DepartmentRepository.GetAllAsync();
-
-            if (departments.Any(x=>x.DepartmentName == department.DepartmentName))
+            var results = await _departmentValidator.ValidateAsync(department);
+            if (!results.IsValid)
             {
-                return; 
+                foreach (var failure in results.Errors)
+                {
+                    throw new Exception(failure.ErrorMessage);
+                }
+            } 
+            else
+            {
+                await _unitOfWork.DepartmentRepository.AddAsync(department);
+                await _unitOfWork.Complete();
             }
-
-            await _unitOfWork.DepartmentRepository.AddAsync(department);
-            await _unitOfWork.Complete();
-            
         }
 
         public async Task UpdateDepartmentAsync(Department department)

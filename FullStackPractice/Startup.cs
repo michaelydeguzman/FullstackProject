@@ -17,6 +17,9 @@ using FullStackPractice.Business.Interfaces;
 using FullStackPractice.Business;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using FluentValidation;
+using FullStackPractice.Services.Validations;
+using FullStackPractice.Persistence.Models;
 
 namespace FullStackPractice
 {
@@ -57,6 +60,9 @@ namespace FullStackPractice
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            // Validators
+            services.AddTransient<AbstractValidator<Department>, DepartmentValidator>();
 
             // Services
             services.AddTransient<IDepartmentService, DepartmentService>();

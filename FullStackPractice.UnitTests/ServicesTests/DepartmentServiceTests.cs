@@ -1,3 +1,4 @@
+using FluentValidation;
 using FullStackPractice.Business;
 using FullStackPractice.Business.Interfaces;
 using FullStackPractice.Persistence;
@@ -23,6 +24,8 @@ namespace FullStackPractice.UnitTests.ServicesTests
                 new Department { DepartmentId = 2, DepartmentName = "Test Department 2" }
             };
 
+            var mockDepartmentValidator = new Mock<AbstractValidator<Department>>();
+
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
             mockDepartmentRepository.Setup(mdr => mdr.GetAllAsync()).ReturnsAsync(expected).Verifiable();
 
@@ -30,7 +33,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockDepartmentValidator.Object);
             var actual = await sut.GetAllDepartmentsAsync();
 
             // Assert
@@ -48,6 +51,8 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var departmentId = 1;
             var expected = new Department { DepartmentId = departmentId, DepartmentName = "Test Department 1" };
 
+            var mockDepartmentValidator = new Mock<AbstractValidator<Department>>();
+
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
             mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(departmentId)).ReturnsAsync(expected).Verifiable();
 
@@ -55,7 +60,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mockDepartmentValidator.Object);
             var actual = await sut.GetDepartmentByIdAsync(departmentId);
 
             // Assert
