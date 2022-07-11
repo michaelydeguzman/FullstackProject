@@ -8,14 +8,14 @@ namespace FullStackPractice.Business.Interfaces
 {
     public interface IDepartmentService
     {
-        Task<List<Department>> GetAllDepartments();
+        Task<List<Department>> GetAllDepartmentsAsync();
 
-        Task<Department> GetDepartmentById(int id);
+        Task<Department> GetDepartmentByIdAsync(int id);
 
-        Task CreateDepartment(Department department);
+        Task CreateDepartmentAsync(Department department);
 
-        Task UpdateDepartment(Department department);
+        Task UpdateDepartmentAsync(Department department);
 
-        Task DeleteDepartment(int id);
+        Task DeleteDepartmentAsync(int id);
     }
 }

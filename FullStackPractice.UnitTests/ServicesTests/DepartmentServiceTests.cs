@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace FullStackPractice.UnitTests
+namespace FullStackPractice.UnitTests.ServicesTests
 {
     public class DepartmentServiceTests
     {
@@ -24,14 +24,14 @@ namespace FullStackPractice.UnitTests
             };
 
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
-            mockDepartmentRepository.Setup(mdr => mdr.GetAll()).ReturnsAsync(expected).Verifiable();
+            mockDepartmentRepository.Setup(mdr => mdr.GetAllAsync()).ReturnsAsync(expected).Verifiable();
 
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
             IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object);
-            var actual = await sut.GetAllDepartments();
+            var actual = await sut.GetAllDepartmentsAsync();
 
             // Assert
             mockDepartmentRepository.Verify();
@@ -49,20 +49,26 @@ namespace FullStackPractice.UnitTests
             var expected = new Department { DepartmentId = departmentId, DepartmentName = "Test Department 1" };
 
             var mockDepartmentRepository = new Mock<IDepartmentRepository>();
-            mockDepartmentRepository.Setup(mdr => mdr.GetById(departmentId)).ReturnsAsync(expected).Verifiable();
+            mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(departmentId)).ReturnsAsync(expected).Verifiable();
 
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
             // Act
             IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object);
-            var actual = await sut.GetDepartmentById(departmentId);
+            var actual = await sut.GetDepartmentByIdAsync(departmentId);
 
             // Assert
             mockDepartmentRepository.Verify();
             Assert.IsType<Department>(actual);
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async Task CreateDepartment_Success()
+        {
+
         }
     }
 }

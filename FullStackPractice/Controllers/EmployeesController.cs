@@ -33,7 +33,7 @@ namespace FullStackPractice.Controllers
         [HttpGet]
         public async Task<JsonResult> GetEmployees()
         {
-            var employees = await _employeeService.GetAllEmployees();
+            var employees = await _employeeService.GetAllEmployeesAsync();
             return new JsonResult(employees);
         }
 
@@ -42,7 +42,7 @@ namespace FullStackPractice.Controllers
         [Route("{id}")]
         public async Task<JsonResult> GetEmployeeById(int id)
         {
-            var employee = await _employeeService.GetEmployeeById(id);
+            var employee = await _employeeService.GetEmployeeByIdAsync(id);
 
             return new JsonResult(employee);
         }
@@ -59,14 +59,14 @@ namespace FullStackPractice.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(Employee employee)
         {
-            await _employeeService.CreateEmployee(employee);
+            await _employeeService.CreateEmployeeAsync(employee);
             return Ok();
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee(Employee employee)
         {
-            await _employeeService.UpdateEmployee(employee);
+            await _employeeService.UpdateEmployeeAsync(employee);
             return Ok();
         }
 
@@ -74,7 +74,7 @@ namespace FullStackPractice.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            await _employeeService.DeleteEmployee(id);
+            await _employeeService.DeleteEmployeeAsync(id);
             return Ok();
         }
 

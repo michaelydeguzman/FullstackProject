@@ -18,35 +18,43 @@ namespace FullStackPractice.Business
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Department>> GetAllDepartments()
+        public async Task<List<Department>> GetAllDepartmentsAsync()
         {
-            return (List<Department>)await _unitOfWork.DepartmentRepository.GetAll();
+            return (List<Department>)await _unitOfWork.DepartmentRepository.GetAllAsync();
         }
 
-        public async Task<Department> GetDepartmentById(int id)
+        public async Task<Department> GetDepartmentByIdAsync(int id)
         {
-            return await _unitOfWork.DepartmentRepository.GetById(id);
+            return await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateDepartment(Department department)
+        public async Task CreateDepartmentAsync(Department department)
         {
-            await _unitOfWork.DepartmentRepository.Add(department);
+            var departments = (List<Department>)await _unitOfWork.DepartmentRepository.GetAllAsync();
+
+            if (departments.Any(x=>x.DepartmentName == department.DepartmentName))
+            {
+                return; 
+            }
+
+            await _unitOfWork.DepartmentRepository.AddAsync(department);
+            await _unitOfWork.Complete();
+            
+        }
+
+        public async Task UpdateDepartmentAsync(Department department)
+        {
+            await _unitOfWork.DepartmentRepository.UpdateAsync(department);
             await _unitOfWork.Complete();
         }
 
-        public async Task UpdateDepartment(Department department)
+        public async Task DeleteDepartmentAsync(int id)
         {
-            await _unitOfWork.DepartmentRepository.Update(department);
-            await _unitOfWork.Complete();
-        }
-
-        public async Task DeleteDepartment(int id)
-        {
-            var department = await _unitOfWork.DepartmentRepository.GetById(id);
+            var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
             if (department != null)
             {
-                await _unitOfWork.DepartmentRepository.Remove(department);
+                await _unitOfWork.DepartmentRepository.RemoveAsync(department); 
                 await _unitOfWork.Complete();
             }
         }

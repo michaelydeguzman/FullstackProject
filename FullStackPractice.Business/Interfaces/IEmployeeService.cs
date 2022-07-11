@@ -8,15 +8,15 @@ namespace FullStackPractice.Business.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<List<Employee>> GetAllEmployees();
+        Task<List<Employee>> GetAllEmployeesAsync();
 
-        Task<Employee> GetEmployeeById(int id);
+        Task<Employee> GetEmployeeByIdAsync(int id);
 
-        Task CreateEmployee(Employee department);
+        Task CreateEmployeeAsync(Employee department);
 
-        Task UpdateEmployee(Employee department);
+        Task UpdateEmployeeAsync(Employee department);
 
-        Task DeleteEmployee(int id);
+        Task DeleteEmployeeAsync(int id);
 
         Task<List<Employee>> GetAllEmployeesByDepartmentId(int id);
     }

@@ -1,5 +1,4 @@
 ﻿using FullStackPractice.Persistence;
-using FullStackPractice.Persistence.Models;
 using FullStackPractice.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,42 +18,42 @@ namespace FullStackPractice.Repository
             _dbcontext = dbContext;
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             await _dbcontext.Set<T>().AddAsync(entity);
         }
 
-        public async Task AddRange(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<T> entities)
         {
             await _dbcontext.Set<T>().AddRangeAsync(entities);
         }
 
-        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbcontext.Set<T>().Where(expression).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbcontext.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbcontext.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             return _dbcontext.Update(entity).Entity;
         }
 
-        public async Task Remove(T entity)
+        public async Task RemoveAsync(T entity)
         {
             _dbcontext.Set<T>().Remove(entity);
         }
 
-        public async Task RemoveRange(IEnumerable<T> entities)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             _dbcontext.Set<T>().RemoveRange(entities);
         }

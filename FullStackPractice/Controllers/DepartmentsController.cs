@@ -28,7 +28,7 @@ namespace FullStackPractice.Controllers
         [HttpGet]
         public async Task<JsonResult> GetDepartments()
         {
-            var departments = await _departmentService.GetAllDepartments();
+            var departments = await _departmentService.GetAllDepartmentsAsync();
             return new JsonResult(departments);
         }
 
@@ -37,7 +37,7 @@ namespace FullStackPractice.Controllers
         [Route("{id}")]
         public async Task<JsonResult> GetDepartmentById(int id)
         {
-            var department = await _departmentService.GetDepartmentById(id);
+            var department = await _departmentService.GetDepartmentByIdAsync(id);
             return new JsonResult(department);
         }
 
@@ -46,7 +46,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.CreateDepartment(department);
+                await _departmentService.CreateDepartmentAsync(department);
                 return Ok();
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.UpdateDepartment(department);
+                await _departmentService.UpdateDepartmentAsync(department);
                 return Ok();
             }
             catch (Exception ex)
@@ -75,7 +75,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.DeleteDepartment(id);
+                await _departmentService.DeleteDepartmentAsync(id);
                 return Ok();
             }
             catch (Exception ex)

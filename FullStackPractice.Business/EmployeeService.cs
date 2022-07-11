@@ -18,46 +18,46 @@ namespace FullStackPractice.Business
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Employee>> GetAllEmployees()
+        public async Task<List<Employee>> GetAllEmployeesAsync()
         {
-            return (List<Employee>)await _unitOfWork.EmployeeRepository.GetAll();
+            return (List<Employee>)await _unitOfWork.EmployeeRepository.GetAllAsync();
         }
 
-        public async Task<Employee> GetEmployeeById(int id)
+        public async Task<Employee> GetEmployeeByIdAsync(int id)
         {
-            return await _unitOfWork.EmployeeRepository.GetById(id);
+            return await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateEmployee(Employee employee)
+        public async Task CreateEmployeeAsync(Employee employee)
         {
-            await _unitOfWork.EmployeeRepository.Add(employee);
+            await _unitOfWork.EmployeeRepository.AddAsync(employee);
             await _unitOfWork.Complete();
         }
 
-        public async Task UpdateEmployee(Employee employee)
+        public async Task UpdateEmployeeAsync(Employee employee)
         {
-            await _unitOfWork.EmployeeRepository.Update(employee);
+            await _unitOfWork.EmployeeRepository.UpdateAsync(employee);
             await _unitOfWork.Complete();
         }
 
-        public async Task DeleteEmployee(int id)
+        public async Task DeleteEmployeeAsync(int id)
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetById(id);
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
 
             if (employee != null)
             {
-                await _unitOfWork.EmployeeRepository.Remove(employee);
+                await _unitOfWork.EmployeeRepository.RemoveAsync(employee);
                 await _unitOfWork.Complete();
             }
         }
 
         public async Task<List<Employee>> GetAllEmployeesByDepartmentId(int id)
         {
-            var department = await _unitOfWork.DepartmentRepository.GetById(id);
+            var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
             if (department != null)
             {
-                return (List<Employee>)await _unitOfWork.EmployeeRepository.Find(x => x.DepartmentId == department.DepartmentId);
+                return (List<Employee>)await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == department.DepartmentId);
             }
             else
             {
