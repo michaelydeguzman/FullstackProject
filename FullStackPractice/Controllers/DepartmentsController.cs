@@ -1,6 +1,7 @@
 ﻿using FullStackPractice.Business.Interfaces;
 using FullStackPractice.Persistence.Models;
 using FullStackPractice.Repository.Interfaces;
+using FullStackPractice.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,18 +18,18 @@ namespace FullStackPractice.Controllers
     {
 
         private readonly IConfiguration _configuration;
-        private readonly IDepartmentService _departmentService;
+        private readonly IServiceWrapper _serviceWrapper;
 
-        public DepartmentsController(IConfiguration configuration, IDepartmentService departmentService)
+        public DepartmentsController(IConfiguration configuration, IServiceWrapper serviceWrapper)
         {
             _configuration = configuration;
-            _departmentService = departmentService;
+            _serviceWrapper = serviceWrapper;
         }
 
         [HttpGet]
         public async Task<JsonResult> GetDepartments()
         {
-            var departments = await _departmentService.GetAllDepartmentsAsync();
+            var departments = await _serviceWrapper.DepartmentService.GetAllDepartmentsAsync();
             return new JsonResult(departments);
         }
 
@@ -36,7 +37,7 @@ namespace FullStackPractice.Controllers
         [Route("{id}")]
         public async Task<JsonResult> GetDepartmentById(int id)
         {
-            var department = await _departmentService.GetDepartmentByIdAsync(id);
+            var department = await _serviceWrapper.DepartmentService.GetDepartmentByIdAsync(id);
             return new JsonResult(department);
         }
 
@@ -45,7 +46,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.CreateDepartmentAsync(department);
+                await _serviceWrapper.DepartmentService.CreateDepartmentAsync(department);
                 return Ok();
             }
             catch (Exception ex)
@@ -59,7 +60,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.UpdateDepartmentAsync(department);
+                await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(department);
                 return Ok();
             }
             catch (Exception ex)
@@ -74,7 +75,7 @@ namespace FullStackPractice.Controllers
         {
             try
             {
-                await _departmentService.DeleteDepartmentAsync(id);
+                await _serviceWrapper.DepartmentService.DeleteDepartmentAsync(id);
                 return Ok();
             }
             catch (Exception ex)

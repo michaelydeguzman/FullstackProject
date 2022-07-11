@@ -21,6 +21,8 @@ using FluentValidation;
 using FullStackPractice.Services.Validations;
 using FullStackPractice.Persistence.Models;
 using Microsoft.OpenApi.Models;
+using FullStackPractice.Services.Interfaces;
+using FullStackPractice.Services;
 
 namespace FullStackPractice
 {
@@ -69,6 +71,8 @@ namespace FullStackPractice
             // Services
             services.AddTransient<IDepartmentService, DepartmentService>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+
+            services.AddTransient<IServiceWrapper, ServiceWrapper>();
 
             services.AddRazorPages();
 
