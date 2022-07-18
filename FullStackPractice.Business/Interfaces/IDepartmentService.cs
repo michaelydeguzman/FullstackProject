@@ -1,4 +1,6 @@
 ﻿using FullStackPractice.Persistence.Models;
+using FullStackPractice.Services.Dtos;
+using FullStackPractice.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,14 +10,14 @@ namespace FullStackPractice.Business.Interfaces
 {
     public interface IDepartmentService
     {
-        Task<List<Department>> GetAllDepartmentsAsync();
+        Task<ServiceResponse<List<DepartmentDto>>> GetAllDepartmentsAsync();
 
-        Task<Department> GetDepartmentByIdAsync(int id);
+        Task<ServiceResponse<DepartmentDto>> GetDepartmentByIdAsync(int id);
 
-        Task CreateDepartmentAsync(Department department);
+        Task<ServiceResponse<DepartmentDto>> CreateDepartmentAsync(DepartmentDto departmentDto);
 
-        Task UpdateDepartmentAsync(Department department);
+        Task<ServiceResponse<DepartmentDto>> UpdateDepartmentAsync(DepartmentDto departmentDto);
 
-        Task DeleteDepartmentAsync(int id);
+        Task<ServiceResponse<DepartmentDto>> DeleteDepartmentAsync(int id);
     }
 }

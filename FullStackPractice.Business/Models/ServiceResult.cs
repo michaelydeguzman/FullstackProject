@@ -4,13 +4,11 @@ using System.Text;
 
 namespace FullStackPractice.Services.Models
 {
-    public class ServiceResult<T> where T : class
+    public class ServiceResponse<T> where T : class
     {
+        public T Result { get; set; }
         public bool IsSuccess { get; set; }
-        public string ErrorMessage { get; set; }
-
-        public string OutputMessage { get; set; }
-
-        public T Output { get; set; } 
-    }
+        public string Error { get; set; }
+        public List<string> Messages { get; set; }
+    }   
 }

@@ -1,6 +1,7 @@
 ﻿using FullStackPractice.Business.Interfaces;
 using FullStackPractice.Persistence.Models;
 using FullStackPractice.Repository.Interfaces;
+using FullStackPractice.Services.Dtos;
 using FullStackPractice.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,11 +43,11 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDepartment(Department department)
+        public async Task<IActionResult> CreateDepartment(DepartmentDto departmentDto)
         {
             try
             {
-                await _serviceWrapper.DepartmentService.CreateDepartmentAsync(department);
+                await _serviceWrapper.DepartmentService.CreateDepartmentAsync(departmentDto);
                 return Ok();
             }
             catch (Exception ex)
@@ -56,11 +57,11 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateDepartment(Department department)
+        public async Task<IActionResult> UpdateDepartment(DepartmentDto departmentDto)
         {
             try
             {
-                await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(department);
+                await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(departmentDto);
                 return Ok();
             }
             catch (Exception ex)
