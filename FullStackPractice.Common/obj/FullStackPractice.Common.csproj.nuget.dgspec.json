@@ -1,0 +1,183 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\FullStackPractice.Common.csproj": {}
+  },
+  "projects": {
+    "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\FullStackPractice.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\FullStackPractice.Common.csproj",
+        "projectName": "FullStackPractice.Common",
+        "projectPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\FullStackPractice.Common.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\FullStackPractice.Contracts.csproj": {
+                "projectPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\FullStackPractice.Contracts.csproj"
+              },
+              "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\FullStackPractice.Domain.csproj": {
+                "projectPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\FullStackPractice.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\FullStackPractice.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\FullStackPractice.Contracts.csproj",
+        "projectName": "FullStackPractice.Contracts",
+        "projectPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\FullStackPractice.Contracts.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\FullStackPractice.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\FullStackPractice.Domain.csproj",
+        "projectName": "FullStackPractice.Domain",
+        "projectPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\FullStackPractice.Domain.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

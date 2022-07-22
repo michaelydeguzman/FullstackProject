@@ -1,4 +1,4 @@
-﻿using FullStackPractice.Persistence.Models;
+﻿
 using FullStackPractice.Repository;
 using FullStackPractice.Repository.Interfaces;
 using FullStackPractice.Business.Interfaces;
@@ -6,11 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FullStackPractice.Services.Validations;
+using FullStackPractice.Validations;
 using FluentValidation;
 using FullStackPractice.Services.Models;
-using FullStackPractice.Services.Dtos;
 using AutoMapper;
+using FullStackPractice.Domain.Entities;
+using FullStackPractice.Contracts;
 
 namespace FullStackPractice.Business
 {

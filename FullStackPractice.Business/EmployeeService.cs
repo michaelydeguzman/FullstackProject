@@ -1,5 +1,5 @@
 ﻿using FullStackPractice.Business.Interfaces;
-using FullStackPractice.Persistence.Models;
+using FullStackPractice.Domain.Entities;
 using FullStackPractice.Repository;
 using FullStackPractice.Repository.Interfaces;
 using System;

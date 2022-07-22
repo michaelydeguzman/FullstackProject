@@ -1,0 +1,17 @@
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.csproj.AssemblyReference.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.GeneratedMSBuildEditorConfig.editorconfig
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.AssemblyInfoInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.AssemblyInfo.cs
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.csproj.CoreCompileInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Validations.deps.json
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Validations.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Validations.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Domain.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Persistence.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Repository.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Domain.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Repository.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\bin\Debug\netcoreapp3.1\FullStackPractice.Persistence.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.csproj.CopyComplete
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Validations\obj\Debug\netcoreapp3.1\FullStackPractice.Validations.pdb

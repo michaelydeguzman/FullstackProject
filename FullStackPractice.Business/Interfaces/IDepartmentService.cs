@@ -1,5 +1,5 @@
-﻿using FullStackPractice.Persistence.Models;
-using FullStackPractice.Services.Dtos;
+﻿
+using FullStackPractice.Contracts;
 using FullStackPractice.Services.Models;
 using System;
 using System.Collections.Generic;

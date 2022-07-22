@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FullStackPractice.Domain\FullStackPractice.Domain.csproj" />
+    <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

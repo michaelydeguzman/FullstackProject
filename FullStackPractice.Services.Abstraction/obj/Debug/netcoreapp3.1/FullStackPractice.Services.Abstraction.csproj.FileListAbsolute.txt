@@ -1,0 +1,10 @@
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\bin\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.deps.json
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\bin\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\bin\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.csproj.AssemblyReference.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.GeneratedMSBuildEditorConfig.editorconfig
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.AssemblyInfoInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.AssemblyInfo.cs
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.csproj.CoreCompileInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Services.Abstraction\obj\Debug\netcoreapp3.1\FullStackPractice.Services.Abstraction.pdb

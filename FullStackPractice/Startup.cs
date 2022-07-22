@@ -18,13 +18,14 @@ using FullStackPractice.Business;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using FluentValidation;
-using FullStackPractice.Services.Validations;
-using FullStackPractice.Persistence.Models;
+
 using Microsoft.OpenApi.Models;
 using FullStackPractice.Services.Interfaces;
 using FullStackPractice.Services;
 using AutoMapper;
-using FullStackPractice.Services.Dtos;
+
+using FullStackPractice.Validations;
+using FullStackPractice.Common.AutoMapper;
 
 namespace FullStackPractice
 {

@@ -1,4 +1,4 @@
-﻿using FullStackPractice.Persistence.Models;
+﻿using FullStackPractice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 

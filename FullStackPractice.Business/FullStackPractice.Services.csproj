@@ -11,8 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FullStackPractice.Contracts\FullStackPractice.Contracts.csproj" />
     <ProjectReference Include="..\FullStackPractice.Persistence\FullStackPractice.Persistence.csproj" />
     <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
+    <ProjectReference Include="..\FullStackPractice.Validations\FullStackPractice.Validations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>

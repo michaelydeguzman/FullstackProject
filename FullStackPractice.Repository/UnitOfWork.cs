@@ -1,5 +1,5 @@
 ﻿using FullStackPractice.Persistence;
-using FullStackPractice.Persistence.Models;
+
 using FullStackPractice.Repository.Interfaces;
 using System;
 using System.Collections.Generic;

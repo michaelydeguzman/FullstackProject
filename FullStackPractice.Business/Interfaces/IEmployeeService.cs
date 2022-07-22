@@ -1,4 +1,5 @@
-﻿using FullStackPractice.Persistence.Models;
+﻿
+using FullStackPractice.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

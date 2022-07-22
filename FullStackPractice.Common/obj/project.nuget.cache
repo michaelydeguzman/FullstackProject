@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ufjxj7CLZFl6MwhjYVarB3XQVBGBgJxCqf2QB3N18cZ3ZehOdC4W3cuiz7v2Zgg4OWyBOy5O/ub7Giw1mssR3Q==",
+  "success": true,
+  "projectFilePath": "D:\\PracticeProjects\\FullStackProject\\FullstackProject\\FullStackPractice.Common\\FullStackPractice.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

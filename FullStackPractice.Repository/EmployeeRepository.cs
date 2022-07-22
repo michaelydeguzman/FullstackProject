@@ -1,5 +1,6 @@
-﻿using FullStackPractice.Persistence;
-using FullStackPractice.Persistence.Models;
+﻿using FullStackPractice.Domain.Entities;
+using FullStackPractice.Persistence;
+
 using FullStackPractice.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

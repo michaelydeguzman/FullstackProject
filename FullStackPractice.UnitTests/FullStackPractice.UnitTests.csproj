@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FullStackPractice.Business\FullStackPractice.Services.csproj" />
+    <ProjectReference Include="..\FullStackPractice.Common\FullStackPractice.Common.csproj" />
   </ItemGroup>
 
 </Project>

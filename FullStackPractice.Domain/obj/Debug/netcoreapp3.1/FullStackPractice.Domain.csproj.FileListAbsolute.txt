@@ -1,0 +1,10 @@
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\bin\Debug\netcoreapp3.1\FullStackPractice.Domain.deps.json
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\bin\Debug\netcoreapp3.1\FullStackPractice.Domain.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\bin\Debug\netcoreapp3.1\FullStackPractice.Domain.pdb
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.csproj.AssemblyReference.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.AssemblyInfoInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.AssemblyInfo.cs
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.csproj.CoreCompileInputs.cache
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.dll
+D:\PracticeProjects\FullStackProject\FullstackProject\FullStackPractice.Domain\obj\Debug\netcoreapp3.1\FullStackPractice.Domain.pdb

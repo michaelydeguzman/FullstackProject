@@ -1,5 +1,5 @@
 ﻿using FullStackPractice.Business.Interfaces;
-using FullStackPractice.Persistence.Models;
+using FullStackPractice.Domain.Entities;
 using FullStackPractice.Repository.Interfaces;
 using FullStackPractice.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
