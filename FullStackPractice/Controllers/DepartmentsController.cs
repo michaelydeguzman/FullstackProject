@@ -16,72 +16,48 @@ namespace FullStackPractice.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-
-        private readonly IConfiguration _configuration;
         private readonly IServiceWrapper _serviceWrapper;
 
-        public DepartmentsController(IConfiguration configuration, IServiceWrapper serviceWrapper)
+        public DepartmentsController(IServiceWrapper serviceWrapper)
         {
-            _configuration = configuration;
             _serviceWrapper = serviceWrapper;
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetDepartments()
+        public async Task<IActionResult> GetDepartments()
         {
             var departments = await _serviceWrapper.DepartmentService.GetAllDepartmentsAsync();
-            return new JsonResult(departments);
+            return Ok(departments);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<JsonResult> GetDepartmentById(int id)
+        public async Task<IActionResult> GetDepartmentById(int id)
         {
             var department = await _serviceWrapper.DepartmentService.GetDepartmentByIdAsync(id);
-            return new JsonResult(department);
+            return Ok(department);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateDepartment(DepartmentDto departmentDto)
         {
-            try
-            {
-                await _serviceWrapper.DepartmentService.CreateDepartmentAsync(departmentDto);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
+            var result = await _serviceWrapper.DepartmentService.CreateDepartmentAsync(departmentDto);
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateDepartment(DepartmentDto departmentDto)
         {
-            try
-            {
-                await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(departmentDto);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
+            var result = await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(departmentDto);
+            return Ok(result);
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteDepartment(int id)
         {
-            try
-            {
-                await _serviceWrapper.DepartmentService.DeleteDepartmentAsync(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
+            await _serviceWrapper.DepartmentService.DeleteDepartmentAsync(id);
+            return Ok();
         }
     }
 }

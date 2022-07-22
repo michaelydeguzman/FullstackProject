@@ -59,10 +59,9 @@ namespace FullStackPractice.UnitTests.ServicesTests
             // Assert
             mockDepartmentRepository.Verify();
             Assert.NotNull(serviceResponse);
-            Assert.IsType<List<DepartmentDto>>(serviceResponse.Result);
-            Assert.True(serviceResponse.IsSuccess);
-            Assert.Equal(expected.Count, serviceResponse.Result.Count);
-            //Assert.Equal(expected, serviceResponse.Result);
+            Assert.IsType<List<DepartmentDto>>(serviceResponse);
+            Assert.Equal(expected.Count, serviceResponse.Count);
+            //Assert.Equal(expected, serviceResponse);
         }
 
         [Fact]
@@ -86,13 +85,13 @@ namespace FullStackPractice.UnitTests.ServicesTests
 
             // Act
             IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockUpdateDepartmentValidator.Object, mockDeleteDepartmentValidator.Object);
-            var serviceResponse = await sut.GetDepartmentByIdAsync(departmentId);
+            var actual = await sut.GetDepartmentByIdAsync(departmentId);
 
             // Assert
             mockDepartmentRepository.Verify();
-            Assert.NotNull(serviceResponse);
-            Assert.IsType<DepartmentDto>(serviceResponse.Result);
-            //Assert.Equal(expected, serviceResponse.Result);
+            Assert.NotNull(actual);
+            Assert.IsType<DepartmentDto>(actual);
+            //Assert.Equal(expected, actual);
         }
 
         [Fact]

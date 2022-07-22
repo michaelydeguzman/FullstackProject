@@ -12,6 +12,8 @@ using FullStackPractice.Services.Models;
 using AutoMapper;
 using FullStackPractice.Domain.Entities;
 using FullStackPractice.Contracts;
+using FullStackPractice.Services;
+using FullStackPractice.Services.Constants;
 
 namespace FullStackPractice.Business
 {
@@ -31,123 +33,75 @@ namespace FullStackPractice.Business
             _deleteDepartmentValidator = deleteDepartmentValidator;
         }
 
-        public async Task<ServiceResponse<List<DepartmentDto>>> GetAllDepartmentsAsync()
+        public async Task<List<DepartmentDto>> GetAllDepartmentsAsync()
         {
-            var response = new ServiceResponse<List<DepartmentDto>>();
-
             var obj = (List<Department>)await _unitOfWork.DepartmentRepository.GetAllAsync();
 
-            response.Result = _mapper.Map<List<DepartmentDto>>(obj);
-            response.IsSuccess = true;
-            response.Messages = null;
-            response.Error = null;
-            return response;
+            var result = _mapper.Map<List<DepartmentDto>>(obj);
+            return result;
         }
 
-        public async Task<ServiceResponse<DepartmentDto>> GetDepartmentByIdAsync(int id)
+        public async Task<DepartmentDto> GetDepartmentByIdAsync(int id)
         {
-            var response = new ServiceResponse<DepartmentDto>();
             var obj = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
-            response.Result = _mapper.Map<DepartmentDto>(obj);
-            response.IsSuccess = true;
-            response.Messages = null;
-            response.Error = null;
-            return response;
+            var result = _mapper.Map<DepartmentDto>(obj);
+            return result;
         }
 
-        public async Task<ServiceResponse<DepartmentDto>> CreateDepartmentAsync(DepartmentDto departmentDto)
+        public async Task<DepartmentDto> CreateDepartmentAsync(DepartmentDto departmentDto)
         {
-            var response = new ServiceResponse<DepartmentDto>();
-
             var newDepartmentEntity = _mapper.Map<Department>(departmentDto);
 
             var validationResult = await _updateDepartmentValidator.ValidateAsync(newDepartmentEntity);
 
-            if (!validationResult.IsValid)
-            {
-                response.Result = null;
-                response.IsSuccess = false;
-                response.Messages = new List<string>();
-                response.Error = "Bad Request";
-
-                foreach (var validationError in validationResult.Errors)
-                {
-                    response.Messages.Add(validationError.ErrorMessage);
-                }
-            }
-            else
+            if (validationResult.IsValid)
             {
                 await _unitOfWork.DepartmentRepository.AddAsync(newDepartmentEntity);
                 await _unitOfWork.Complete();
 
-                response.Result = _mapper.Map<DepartmentDto>(newDepartmentEntity);
-                response.IsSuccess = true;
-                response.Messages = null;
-                response.Error = null;
-            }
+                var result = _mapper.Map<DepartmentDto>(newDepartmentEntity);
 
-            return response;
+                return result;
+            }
+            else
+            {
+                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
+            }
         }
 
-        public async Task<ServiceResponse<DepartmentDto>> UpdateDepartmentAsync(DepartmentDto departmentDto)
+        public async Task<DepartmentDto> UpdateDepartmentAsync(DepartmentDto departmentDto)
         {
-            var response = new ServiceResponse<DepartmentDto>();
-
             var departmentEntity = _mapper.Map<Department>(departmentDto);
 
             await _unitOfWork.DepartmentRepository.UpdateAsync(departmentEntity);
             await _unitOfWork.Complete();
 
-            response.Result = _mapper.Map<DepartmentDto>(departmentEntity);
-            response.IsSuccess = true;
-            response.Messages = null;
-            response.Error = null;
-
-            return response;
+            var result = _mapper.Map<DepartmentDto>(departmentEntity);
+            return result;
         }
 
-        public async Task<ServiceResponse<DepartmentDto>> DeleteDepartmentAsync(int id)
+        public async Task<bool> DeleteDepartmentAsync(int id)
         {
-            var response = new ServiceResponse<DepartmentDto>();
-
             var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
             if (department == null)
             {
-                response.Result = null;
-                response.IsSuccess = false;
-                response.Messages = new List<string>();
-                response.Error = "Not Found";
-
-                return response;
+                throw new ServiceException(ValidationMessages.DepartmentNotFound);
             }
 
             var validationResult = await _deleteDepartmentValidator.ValidateAsync(department);
-            if (!validationResult.IsValid)
-            {
-                response.Result = null;
-                response.IsSuccess = false;
-                response.Messages = new List<string>();
-                response.Error = "Bad Request";
-
-                foreach (var validationError in validationResult.Errors)
-                {
-                    response.Messages.Add(validationError.ErrorMessage);
-                }
-            }
-            else
+            if (validationResult.IsValid)
             {
                 await _unitOfWork.DepartmentRepository.RemoveAsync(department);
                 await _unitOfWork.Complete();
 
-                response.Result = new DepartmentDto();
-                response.IsSuccess = true;
-                response.Messages = null;
-                response.Error = null;
+                return true;
             }
-
-            return response;
+            else
+            {
+                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ using AutoMapper;
 
 using FullStackPractice.Validations;
 using FullStackPractice.Common.AutoMapper;
+using FullStackPractice.Web;
 
 namespace FullStackPractice
 {
@@ -41,6 +42,7 @@ namespace FullStackPractice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+         
             //Enable CORS
 
             services.AddCors(c =>
@@ -96,17 +98,12 @@ namespace FullStackPractice
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Global Error Handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
-
+      
             app.UseStaticFiles();
 
             app.UseRouting();

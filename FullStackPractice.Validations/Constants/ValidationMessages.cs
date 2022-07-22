@@ -9,5 +9,6 @@ namespace FullStackPractice.Services.Constants
         public const string DepartmentNameMustNotBeEmpty = "Department name must not be empty.";
         public const string DepartmentNameMustBeUnique = "Department name already exists.";
         public const string DepartmentToBeDeletedMustNotHaveEmployees = "Department has current employees, cannot delete.";
+        public const string DepartmentNotFound = "Department id does not exist.";
     }
 }
