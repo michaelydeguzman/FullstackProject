@@ -1,4 +1,5 @@
 ﻿
+using FullStackPractice.Contracts;
 using FullStackPractice.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ namespace FullStackPractice.Business.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<List<Employee>> GetAllEmployeesAsync();
+        Task<List<EmployeeDto>> GetAllEmployeesAsync();
 
-        Task<Employee> GetEmployeeByIdAsync(int id);
+        Task<EmployeeDto> GetEmployeeByIdAsync(int id);
 
-        Task CreateEmployeeAsync(Employee department);
+        Task<EmployeeDto> CreateEmployeeAsync(EmployeeDto department);
 
-        Task UpdateEmployeeAsync(Employee department);
+        Task<EmployeeDto> UpdateEmployeeAsync(EmployeeDto department);
 
-        Task DeleteEmployeeAsync(int id);
+        Task<bool> DeleteEmployeeAsync(int id);
 
-        Task<List<Employee>> GetAllEmployeesByDepartmentId(int id);
+        Task<List<EmployeeDto>> GetAllEmployeesByDepartmentId(int id);
     }
 }

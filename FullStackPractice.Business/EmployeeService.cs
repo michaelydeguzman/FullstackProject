@@ -1,7 +1,12 @@
-﻿using FullStackPractice.Business.Interfaces;
+﻿using AutoMapper;
+using FullStackPractice.Business.Interfaces;
+using FullStackPractice.Contracts;
 using FullStackPractice.Domain.Entities;
 using FullStackPractice.Repository;
 using FullStackPractice.Repository.Interfaces;
+using FullStackPractice.Services;
+using FullStackPractice.Services.Constants;
+using FullStackPractice.Validations.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,52 +17,96 @@ namespace FullStackPractice.Business
     public class EmployeeService : IEmployeeService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IValidationManager _validator;
 
-        public EmployeeService(IUnitOfWork unitOfWork)
+        public EmployeeService(IUnitOfWork unitOfWork, IMapper mapper, IValidationManager validator)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _validator = validator;
         }
 
-        public async Task<List<Employee>> GetAllEmployeesAsync()
+        public async Task<List<EmployeeDto>> GetAllEmployeesAsync()
         {
-            return (List<Employee>)await _unitOfWork.EmployeeRepository.GetAllAsync();
+            var obj = (List<Employee>)await _unitOfWork.EmployeeRepository.GetAllAsync();
+
+            var result = _mapper.Map<List<EmployeeDto>>(obj);
+            return result;
         }
 
-        public async Task<Employee> GetEmployeeByIdAsync(int id)
+        public async Task<EmployeeDto> GetEmployeeByIdAsync(int id)
         {
-            return await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
+            var obj = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
+
+            var result = _mapper.Map<EmployeeDto>(obj);
+            return result;
         }
 
-        public async Task CreateEmployeeAsync(Employee employee)
+        public async Task<EmployeeDto> CreateEmployeeAsync(EmployeeDto employeeDto)
         {
-            await _unitOfWork.EmployeeRepository.AddAsync(employee);
-            await _unitOfWork.Complete();
-        }
+            var newEmployeeEntity = _mapper.Map<Employee>(employeeDto);
 
-        public async Task UpdateEmployeeAsync(Employee employee)
-        {
-            await _unitOfWork.EmployeeRepository.UpdateAsync(employee);
-            await _unitOfWork.Complete();
-        }
+            var validationResult = await _validator.CreateEmployee.ValidateAsync(newEmployeeEntity);
 
-        public async Task DeleteEmployeeAsync(int id)
-        {
-            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
-
-            if (employee != null)
+            if (validationResult.IsValid)
             {
-                await _unitOfWork.EmployeeRepository.RemoveAsync(employee);
+                await _unitOfWork.EmployeeRepository.AddAsync(newEmployeeEntity);
                 await _unitOfWork.Complete();
+
+                var result = _mapper.Map<EmployeeDto>(newEmployeeEntity);
+
+                return result;
+            }
+            else
+            {
+                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
             }
         }
 
-        public async Task<List<Employee>> GetAllEmployeesByDepartmentId(int id)
+        public async Task<EmployeeDto> UpdateEmployeeAsync(EmployeeDto employeeDto)
+        {
+            var employeeEntity = _mapper.Map<Employee>(employeeDto);
+
+            var validationResult = await _validator.UpdateEmployee.ValidateAsync(employeeEntity);
+
+            if (validationResult.IsValid)
+            {
+                await _unitOfWork.EmployeeRepository.UpdateAsync(employeeEntity);
+                await _unitOfWork.Complete();
+
+                var result = _mapper.Map<EmployeeDto>(employeeEntity);
+
+                return result;
+            }
+            else
+            {
+                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
+            }
+        }
+
+        public async Task<bool> DeleteEmployeeAsync(int id)
+        {
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
+
+            if (employee == null)
+            {
+                throw new ServiceException(ValidationMessages.EmployeeNotFound);
+            }
+
+            await _unitOfWork.EmployeeRepository.RemoveAsync(employee);
+            await _unitOfWork.Complete();
+
+            return true;
+        }
+
+        public async Task<List<EmployeeDto>> GetAllEmployeesByDepartmentId(int id)
         {
             var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
             if (department != null)
             {
-                return (List<Employee>)await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == department.DepartmentId);
+                return (List<EmployeeDto>)await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == department.DepartmentId);
             }
             else
             {

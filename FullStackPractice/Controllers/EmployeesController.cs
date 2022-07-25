@@ -1,7 +1,9 @@
 ﻿using FullStackPractice.Business.Interfaces;
+using FullStackPractice.Contracts;
 using FullStackPractice.Domain.Entities;
 using FullStackPractice.Repository.Interfaces;
 using FullStackPractice.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,7 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<JsonResult> GetEmployees()
         {
             var employees = await _serviceWrapper.EmployeeService.GetAllEmployeesAsync();
@@ -41,6 +44,7 @@ namespace FullStackPractice.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<JsonResult> GetEmployeeById(int id)
         {
             var employee = await _serviceWrapper.EmployeeService.GetEmployeeByIdAsync(id);
@@ -50,22 +54,24 @@ namespace FullStackPractice.Controllers
 
         [HttpGet]
         [Route("Department/{id}")]
+        [Authorize]
         public async Task<JsonResult> GetEmployeesByDepartmentId(int id)
         {
             var employee = await _serviceWrapper.EmployeeService.GetAllEmployeesByDepartmentId(id);
             return new JsonResult(employee);
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee(Employee employee)
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateEmployee(EmployeeDto employee)
         {
             await _serviceWrapper.EmployeeService.CreateEmployeeAsync(employee);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateEmployee(Employee employee)
+        [Authorize]
+        public async Task<IActionResult> UpdateEmployee(EmployeeDto employee)
         {
             await _serviceWrapper.EmployeeService.UpdateEmployeeAsync(employee);
             return Ok();
@@ -73,6 +79,7 @@ namespace FullStackPractice.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             await _serviceWrapper.EmployeeService.DeleteEmployeeAsync(id);
@@ -81,6 +88,7 @@ namespace FullStackPractice.Controllers
 
         [Route("SaveFile")]
         [HttpPost]
+        [Authorize]
         public JsonResult SaveFile()
         {
             try

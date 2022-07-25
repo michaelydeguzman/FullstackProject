@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace FullStackPractice.Validations
 {
-    public class DeleteDepartmentValidator : AbstractValidator<Department>
+    public class DeleteEmployeeValidator : AbstractValidator<Employee>
     {
         private IUnitOfWork _unitOfWork;
 
-        public DeleteDepartmentValidator(IUnitOfWork unitOfWork)
+        public DeleteEmployeeValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 
-            RuleFor(x => x.DepartmentId).MustAsync(async (departmentId, cancellation) =>
+            RuleFor(x => x.EmployeeId).MustAsync(async (employeeId, cancellation) =>
             {
-                var employees = await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == departmentId);
+                var employees = await _unitOfWork.EmployeeRepository.FindAsync(x => x.EmployeeId == employeeId);
                 return employees.Count() == 0;
-            }).WithMessage(ValidationMessages.DepartmentToBeDeletedMustNotHaveEmployees);
+            }).WithMessage(ValidationMessages.EmployeeNotFound);
         }
     }
 }

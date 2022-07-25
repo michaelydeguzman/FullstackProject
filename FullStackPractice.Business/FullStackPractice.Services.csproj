@@ -17,8 +17,4 @@
     <ProjectReference Include="..\FullStackPractice.Validations\FullStackPractice.Validations.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
 </Project>

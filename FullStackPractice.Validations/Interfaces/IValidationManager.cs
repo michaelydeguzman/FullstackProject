@@ -11,5 +11,13 @@ namespace FullStackPractice.Validations.Interfaces
         public UpdateDepartmentValidator UpdateDepartment { get; set; }
 
         public DeleteDepartmentValidator DeleteDepartment { get; set; }
+
+        public CreateEmployeeValidator CreateEmployee { get; set; }
+
+        public UpdateEmployeeValidator UpdateEmployee { get; set; }
+
+        public DeleteEmployeeValidator DeleteEmployee { get; set; }
+
+
     }
 }

@@ -95,6 +95,9 @@ namespace FullStackPractice
             services.AddTransient<CreateDepartmentValidator>();
             services.AddTransient<UpdateDepartmentValidator>();
             services.AddTransient<DeleteDepartmentValidator>();
+            services.AddTransient<CreateEmployeeValidator>();
+            services.AddTransient<UpdateEmployeeValidator>();
+            services.AddTransient<DeleteEmployeeValidator>();
 
             services.AddTransient<IValidationManager, ValidationManager>();
 
