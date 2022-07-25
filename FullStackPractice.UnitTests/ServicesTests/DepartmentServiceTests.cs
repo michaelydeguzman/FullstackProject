@@ -49,7 +49,14 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
-            var mockValidator = new Mock<IValidationManager>(mockUnitOfWork.Object);
+            var mockCreateDepartmentValidator = new Mock<CreateDepartmentValidator>(mockUnitOfWork.Object);
+            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>(mockUnitOfWork.Object);
+            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>(mockUnitOfWork.Object);
+
+            var mockValidator = new Mock<IValidationManager>();
+            mockValidator.Setup(x => x.CreateDepartment).Returns(mockCreateDepartmentValidator.Object);
+            mockValidator.Setup(x => x.UpdateDepartment).Returns(mockUpdateDepartmentValidator.Object);
+            mockValidator.Setup(x => x.DeleteDepartment).Returns(mockDeleteDepartmentValidator.Object);
 
             // Act
             IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockValidator.Object);
@@ -79,7 +86,14 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
-            var mockValidator = new Mock<IValidationManager>(mockUnitOfWork.Object);
+            var mockCreateDepartmentValidator = new Mock<CreateDepartmentValidator>(mockUnitOfWork.Object);
+            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>(mockUnitOfWork.Object);
+            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>(mockUnitOfWork.Object);
+
+            var mockValidator = new Mock<IValidationManager>();
+            mockValidator.Setup(x => x.CreateDepartment).Returns(mockCreateDepartmentValidator.Object);
+            mockValidator.Setup(x => x.UpdateDepartment).Returns(mockUpdateDepartmentValidator.Object);
+            mockValidator.Setup(x => x.DeleteDepartment).Returns(mockDeleteDepartmentValidator.Object);
 
             // Act
             IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockValidator.Object);

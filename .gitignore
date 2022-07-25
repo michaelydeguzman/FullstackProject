@@ -556,3 +556,15 @@ FullStackPractice/bin/Debug/netcoreapp3.1/System.Web.Http.dll
 FullStackPractice/bin/Debug/netcoreapp3.1/System.Web.Http.WebHost.dll
 FullStackPractice/bin/Debug/netcoreapp3.1/WebActivatorEx.dll
 FullStackPractice/obj/Debug/netcoreapp3.1/FullStackPractice.Web.MvcApplicationPartsAssemblyInfo.cs
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/AutoMapper.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FluentValidation.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Common.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Common.pdb
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Contracts.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Contracts.pdb
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Domain.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Domain.pdb
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Validations.dll
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Validations.pdb
+FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll
