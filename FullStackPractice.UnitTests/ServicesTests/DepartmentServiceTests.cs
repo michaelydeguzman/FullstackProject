@@ -8,6 +8,7 @@ using FullStackPractice.Domain.Entities;
 using FullStackPractice.Persistence;
 using FullStackPractice.Repository.Interfaces;
 using FullStackPractice.Validations;
+using FullStackPractice.Validations.Interfaces;
 using Moq;
 using System;
 using System.Collections.Generic;

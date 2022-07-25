@@ -28,6 +28,9 @@ using FullStackPractice.Validations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using FullStackPractice.Validations.Interfaces;
+using System.Security;
+using FullStackPractice.Security;
 
 namespace FullStackPractice
 {
@@ -100,6 +103,7 @@ namespace FullStackPractice
             services.AddTransient<IEmployeeService, EmployeeService>();
 
             services.AddTransient<IServiceWrapper, ServiceWrapper>();
+            services.AddTransient<ISecurityManager, Security.SecurityManager>();
 
             services.AddRazorPages();
 

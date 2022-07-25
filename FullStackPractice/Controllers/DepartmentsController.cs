@@ -35,6 +35,7 @@ namespace FullStackPractice.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetDepartmentById(int id)
         {
             var department = await _serviceWrapper.DepartmentService.GetDepartmentByIdAsync(id);
@@ -42,6 +43,7 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateDepartment(DepartmentDto departmentDto)
         {
             var result = await _serviceWrapper.DepartmentService.CreateDepartmentAsync(departmentDto);
@@ -49,6 +51,7 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateDepartment(DepartmentDto departmentDto)
         {
             var result = await _serviceWrapper.DepartmentService.UpdateDepartmentAsync(departmentDto);
@@ -57,6 +60,7 @@ namespace FullStackPractice.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteDepartment(int id)
         {
             await _serviceWrapper.DepartmentService.DeleteDepartmentAsync(id);

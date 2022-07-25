@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FullStackPractice.Validations
+namespace FullStackPractice.Validations.Interfaces
 {
     public interface IValidationManager
     {

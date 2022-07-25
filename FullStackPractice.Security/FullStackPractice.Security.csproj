@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FullStackPractice.Domain\FullStackPractice.Domain.csproj" />
+    <ProjectReference Include="..\FullStackPractice.Contracts\FullStackPractice.Contracts.csproj" />
     <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
   </ItemGroup>
 

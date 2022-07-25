@@ -13,7 +13,7 @@ using FullStackPractice.Domain.Entities;
 using FullStackPractice.Contracts;
 using FullStackPractice.Services;
 using FullStackPractice.Services.Constants;
-using FullStackPractice.Validations;
+using FullStackPractice.Validations.Interfaces;
 
 namespace FullStackPractice.Business
 {
