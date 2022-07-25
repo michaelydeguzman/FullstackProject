@@ -4,14 +4,16 @@ using FullStackPractice.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FullStackPractice.Persistence.Migrations
 {
     [DbContext(typeof(FullStackPracticeDbContext))]
-    partial class FullStackPracticeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220725041235_AddEmployeeRole")]
+    partial class AddEmployeeRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

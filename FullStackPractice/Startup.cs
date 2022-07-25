@@ -25,6 +25,9 @@ using AutoMapper;
 using FullStackPractice.Common.AutoMapper;
 using FullStackPractice.Web;
 using FullStackPractice.Validations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FullStackPractice
 {
@@ -54,6 +57,24 @@ namespace FullStackPractice
 
             services.AddControllers();
 
+            // Authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+
+
+            // DbContext
             services.AddDbContext<FullStackPracticeDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeAppCon"),
                 sqlServerOptionsAction: sqlOptions =>
@@ -109,6 +130,7 @@ namespace FullStackPractice
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {

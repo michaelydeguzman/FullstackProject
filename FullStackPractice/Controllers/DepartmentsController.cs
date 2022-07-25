@@ -2,6 +2,7 @@
 using FullStackPractice.Contracts;
 using FullStackPractice.Repository.Interfaces;
 using FullStackPractice.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,12 +19,14 @@ namespace FullStackPractice.Controllers
     {
         private readonly IServiceWrapper _serviceWrapper;
 
+
         public DepartmentsController(IServiceWrapper serviceWrapper)
         {
             _serviceWrapper = serviceWrapper;
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetDepartments()
         {
             var departments = await _serviceWrapper.DepartmentService.GetAllDepartmentsAsync();

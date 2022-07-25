@@ -673,3 +673,5 @@ FullStackPractice/bin/Debug/netcoreapp3.1/FullStackPractice.Domain.pdb
 FullStackPractice/bin/Debug/netcoreapp3.1/FullStackPractice.Validations.dll
 FullStackPractice/bin/Debug/netcoreapp3.1/FullStackPractice.Validations.pdb
 FullStackPractice/bin/Debug/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll
+FullStackPractice.Contracts/obj/Debug/netcoreapp3.1/FullStackPractice.Contracts.csproj.BuildWithSkipAnalyzers
+FullStackPractice.Common/obj/Debug/netcoreapp3.1/FullStackPractice.Common.csproj.BuildWithSkipAnalyzers

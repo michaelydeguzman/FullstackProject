@@ -4,14 +4,16 @@ using FullStackPractice.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FullStackPractice.Persistence.Migrations
 {
     [DbContext(typeof(FullStackPracticeDbContext))]
-    partial class FullStackPracticeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220725033212_AddEmailPasswordToEmployee")]
+    partial class AddEmailPasswordToEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,9 +71,6 @@ namespace FullStackPractice.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
