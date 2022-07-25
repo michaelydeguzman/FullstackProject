@@ -17,10 +17,11 @@ namespace FullStackPractice.Validations
         public DeleteDepartmentValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            Department test = new Department();
 
             RuleFor(x => x.DepartmentId).MustAsync(async (departmentId, cancellation) =>
             {
-                var employees = await _unitOfWork.EmployeeRepository.FindAsync(x=>x.DepartmentId == departmentId);
+                var employees = await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == departmentId);
                 return employees.Count() == 0;
             }).WithMessage(ValidationMessages.DepartmentToBeDeletedMustNotHaveEmployees);
         }

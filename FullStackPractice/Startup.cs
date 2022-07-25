@@ -18,15 +18,13 @@ using FullStackPractice.Business;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using FluentValidation;
-
 using Microsoft.OpenApi.Models;
 using FullStackPractice.Services.Interfaces;
 using FullStackPractice.Services;
 using AutoMapper;
-
-using FullStackPractice.Validations;
 using FullStackPractice.Common.AutoMapper;
 using FullStackPractice.Web;
+using FullStackPractice.Validations;
 
 namespace FullStackPractice
 {
@@ -70,8 +68,11 @@ namespace FullStackPractice
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Validators
+            services.AddTransient<CreateDepartmentValidator>();
             services.AddTransient<UpdateDepartmentValidator>();
             services.AddTransient<DeleteDepartmentValidator>();
+
+            services.AddTransient<IValidationManager, ValidationManager>();
 
             // Services
             services.AddTransient<IDepartmentService, DepartmentService>();

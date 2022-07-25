@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FullStackPractice.Validations;
 using FluentValidation;
 using FullStackPractice.Services.Models;
 using AutoMapper;
@@ -14,6 +13,7 @@ using FullStackPractice.Domain.Entities;
 using FullStackPractice.Contracts;
 using FullStackPractice.Services;
 using FullStackPractice.Services.Constants;
+using FullStackPractice.Validations;
 
 namespace FullStackPractice.Business
 {
@@ -21,16 +21,13 @@ namespace FullStackPractice.Business
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly UpdateDepartmentValidator _updateDepartmentValidator;
-        private readonly DeleteDepartmentValidator _deleteDepartmentValidator;
+        private readonly IValidationManager _validator;
 
-        public DepartmentService(IUnitOfWork unitOfWork, IMapper mapper, UpdateDepartmentValidator updateDepartmentValidator,
-            DeleteDepartmentValidator deleteDepartmentValidator)
+        public DepartmentService(IUnitOfWork unitOfWork, IMapper mapper, IValidationManager validator)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _updateDepartmentValidator = updateDepartmentValidator;
-            _deleteDepartmentValidator = deleteDepartmentValidator;
+            _validator = validator;
         }
 
         public async Task<List<DepartmentDto>> GetAllDepartmentsAsync()
@@ -53,7 +50,7 @@ namespace FullStackPractice.Business
         {
             var newDepartmentEntity = _mapper.Map<Department>(departmentDto);
 
-            var validationResult = await _updateDepartmentValidator.ValidateAsync(newDepartmentEntity);
+            var validationResult = await _validator.CreateDepartment.ValidateAsync(newDepartmentEntity);
 
             if (validationResult.IsValid)
             {
@@ -74,11 +71,20 @@ namespace FullStackPractice.Business
         {
             var departmentEntity = _mapper.Map<Department>(departmentDto);
 
-            await _unitOfWork.DepartmentRepository.UpdateAsync(departmentEntity);
-            await _unitOfWork.Complete();
+            var validationResult = await _validator.UpdateDepartment.ValidateAsync(departmentEntity);
 
-            var result = _mapper.Map<DepartmentDto>(departmentEntity);
-            return result;
+            if (validationResult.IsValid)
+            {
+                await _unitOfWork.DepartmentRepository.UpdateAsync(departmentEntity);
+                await _unitOfWork.Complete();
+
+                var result = _mapper.Map<DepartmentDto>(departmentEntity);
+                return result;
+            }
+            else
+            {
+                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
+            }
         }
 
         public async Task<bool> DeleteDepartmentAsync(int id)
@@ -90,7 +96,7 @@ namespace FullStackPractice.Business
                 throw new ServiceException(ValidationMessages.DepartmentNotFound);
             }
 
-            var validationResult = await _deleteDepartmentValidator.ValidateAsync(department);
+            var validationResult = await _validator.DeleteDepartment.ValidateAsync(department);
             if (validationResult.IsValid)
             {
                 await _unitOfWork.DepartmentRepository.RemoveAsync(department);

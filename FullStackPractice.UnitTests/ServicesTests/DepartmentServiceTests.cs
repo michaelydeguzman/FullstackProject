@@ -49,11 +49,10 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
-            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>(mockUnitOfWork.Object);
-            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>(mockUnitOfWork.Object);
+            var mockValidator = new Mock<IValidationManager>(mockUnitOfWork.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockUpdateDepartmentValidator.Object, mockDeleteDepartmentValidator.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockValidator.Object);
             var serviceResponse = await sut.GetAllDepartmentsAsync();
 
             // Assert
@@ -80,18 +79,17 @@ namespace FullStackPractice.UnitTests.ServicesTests
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(mockDepartmentRepository.Object);
 
-            var mockUpdateDepartmentValidator = new Mock<UpdateDepartmentValidator>(mockUnitOfWork.Object);
-            var mockDeleteDepartmentValidator = new Mock<DeleteDepartmentValidator>(mockUnitOfWork.Object);
+            var mockValidator = new Mock<IValidationManager>(mockUnitOfWork.Object);
 
             // Act
-            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockUpdateDepartmentValidator.Object, mockDeleteDepartmentValidator.Object);
+            IDepartmentService sut = new DepartmentService(mockUnitOfWork.Object, mapper, mockValidator.Object);
             var actual = await sut.GetDepartmentByIdAsync(departmentId);
 
             // Assert
             mockDepartmentRepository.Verify();
             Assert.NotNull(actual);
             Assert.IsType<DepartmentDto>(actual);
-            //Assert.Equal(expected, actual);
+            Assert.Equal(expected.DepartmentName, actual.DepartmentName);
         }
 
         [Fact]

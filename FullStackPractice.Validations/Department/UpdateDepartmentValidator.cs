@@ -20,7 +20,7 @@ namespace FullStackPractice.Validations
             RuleFor(x => x.DepartmentName).NotEmpty().WithMessage(ValidationMessages.DepartmentNameMustNotBeEmpty);
             RuleFor(x => x.DepartmentName).MustAsync(async (departmentName, cancellation) =>
             {
-                var departments = await _unitOfWork.DepartmentRepository.FindAsync(x=>x.DepartmentName == departmentName);
+                var departments = await _unitOfWork.DepartmentRepository.FindAsync(x => x.DepartmentName == departmentName);
                 return departments.Count() == 0;
             }).WithMessage(ValidationMessages.DepartmentNameMustBeUnique);
         }
