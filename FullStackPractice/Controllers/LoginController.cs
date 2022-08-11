@@ -49,7 +49,7 @@ namespace FullStackPractice.Web.Controllers
                 return Ok(loginDetails);
             }
 
-            return NotFound("User not found.");
+            return BadRequest("Email or password is invalid.");
         }
 
        

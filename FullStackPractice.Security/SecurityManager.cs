@@ -50,7 +50,8 @@ namespace FullStackPractice.Security
         {
             var employees = (List<Employee>)await _unitOfWork.EmployeeRepository.GetAllAsync();
 
-            var currentUser = employees.FirstOrDefault(x => x.Email.ToLower() == userLogin.Email.ToLower() && x.Password == userLogin.Password);
+            var currentUser = employees.FirstOrDefault(x => x.Email.ToLower() == userLogin.Email.ToLower() 
+            && BCrypt.Net.BCrypt.Verify(userLogin.Password, x.Password));
 
             if (currentUser == null)
             {
@@ -76,6 +77,13 @@ namespace FullStackPractice.Security
             }
 
             return null;
+        }
+
+
+        public string GeneratePasswordHash(string password)
+        {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            return passwordHash;
         }
     }
 }

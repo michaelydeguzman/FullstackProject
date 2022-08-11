@@ -15,5 +15,7 @@ namespace FullStackPractice.Security
         Task<Employee> Authenticate(LoginUserDto userLogin);
 
         Employee GetCurrentUser(ClaimsIdentity identity);
+
+        string GeneratePasswordHash(string password);
     }
 }

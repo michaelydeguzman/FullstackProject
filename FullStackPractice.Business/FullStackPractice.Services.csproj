@@ -14,6 +14,7 @@
     <ProjectReference Include="..\FullStackPractice.Contracts\FullStackPractice.Contracts.csproj" />
     <ProjectReference Include="..\FullStackPractice.Persistence\FullStackPractice.Persistence.csproj" />
     <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
+    <ProjectReference Include="..\FullStackPractice.Security\FullStackPractice.Security.csproj" />
     <ProjectReference Include="..\FullStackPractice.Validations\FullStackPractice.Validations.csproj" />
   </ItemGroup>
 

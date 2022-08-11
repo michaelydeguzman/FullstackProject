@@ -4,6 +4,7 @@ using FullStackPractice.Contracts;
 using FullStackPractice.Domain.Entities;
 using FullStackPractice.Repository;
 using FullStackPractice.Repository.Interfaces;
+using FullStackPractice.Security;
 using FullStackPractice.Services;
 using FullStackPractice.Services.Constants;
 using FullStackPractice.Validations.Interfaces;
@@ -19,12 +20,14 @@ namespace FullStackPractice.Business
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IValidationManager _validator;
+        private readonly ISecurityManager _securityManager;
 
-        public EmployeeService(IUnitOfWork unitOfWork, IMapper mapper, IValidationManager validator)
+        public EmployeeService(IUnitOfWork unitOfWork, IMapper mapper, IValidationManager validator, ISecurityManager securityManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _validator = validator;
+            _securityManager = securityManager;
         }
 
         public async Task<List<EmployeeDto>> GetAllEmployeesAsync()
@@ -46,11 +49,15 @@ namespace FullStackPractice.Business
         public async Task<EmployeeDto> CreateEmployeeAsync(EmployeeDto employeeDto)
         {
             var newEmployeeEntity = _mapper.Map<Employee>(employeeDto);
+           
+            newEmployeeEntity.DateofJoining = DateTime.Now;
 
             var validationResult = await _validator.CreateEmployee.ValidateAsync(newEmployeeEntity);
 
             if (validationResult.IsValid)
             {
+                newEmployeeEntity.Password = _securityManager.GeneratePasswordHash(employeeDto.Password);
+
                 await _unitOfWork.EmployeeRepository.AddAsync(newEmployeeEntity);
                 await _unitOfWork.Complete();
 

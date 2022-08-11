@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FullStackPractice.Contracts\FullStackPractice.Contracts.csproj" />
     <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
   </ItemGroup>
