@@ -57,7 +57,7 @@ namespace FullStackPractice.Controllers
         [Authorize]
         public async Task<JsonResult> GetEmployeesByDepartmentId(int id)
         {
-            var employee = await _serviceWrapper.EmployeeService.GetAllEmployeesByDepartmentId(id);
+            var employee = await _serviceWrapper.EmployeeService.GetAllEmployeesByDepartmentIdAsync(id);
             return new JsonResult(employee);
         }
 

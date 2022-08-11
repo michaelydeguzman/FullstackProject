@@ -20,6 +20,6 @@ namespace FullStackPractice.Business.Interfaces
 
         Task<bool> DeleteEmployeeAsync(int id);
 
-        Task<List<EmployeeDto>> GetAllEmployeesByDepartmentId(int id);
+        Task<List<EmployeeDto>> GetAllEmployeesByDepartmentIdAsync(int id);
     }
 }

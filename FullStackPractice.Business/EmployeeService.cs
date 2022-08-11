@@ -100,7 +100,7 @@ namespace FullStackPractice.Business
             return true;
         }
 
-        public async Task<List<EmployeeDto>> GetAllEmployeesByDepartmentId(int id)
+        public async Task<List<EmployeeDto>> GetAllEmployeesByDepartmentIdAsync(int id)
         {
             var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(id);
 
