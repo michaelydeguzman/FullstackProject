@@ -37,7 +37,16 @@ namespace FullStackPractice.Web.Controllers
             {
                 var token = _securityManager.GenerateToken(user);
 
-                return Ok(token);
+                LoginDetailDto loginDetails = new LoginDetailDto
+                {
+                    Email = user.Email,
+                    EmployeeId = user.EmployeeId,
+                    EmployeeName = user.EmployeeName,
+                    Role = user.Role,
+                    Token = token
+                };
+
+                return Ok(loginDetails);
             }
 
             return NotFound("User not found.");
