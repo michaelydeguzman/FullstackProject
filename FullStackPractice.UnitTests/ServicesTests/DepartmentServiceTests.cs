@@ -34,6 +34,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
         private IMapper _mapper;
         private Fixture _fixture;
         private Mock<IDepartmentRepository> _mockDepartmentRepository;
+        private Mock<IEmployeeRepository> _mockEmployeeRepository;
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private Mock<IValidator<Department>> _mockDepartmentValidator;
 
@@ -48,6 +49,7 @@ namespace FullStackPractice.UnitTests.ServicesTests
             _fixture = new Fixture();
 
             _mockDepartmentRepository = new Mock<IDepartmentRepository>();
+            _mockEmployeeRepository = new Mock<IEmployeeRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
             _mockDepartmentValidator = new Mock<IValidator<Department>>();
         }
@@ -304,5 +306,77 @@ namespace FullStackPractice.UnitTests.ServicesTests
             await action.Should().ThrowAsync<ServiceException>(ValidationMessages.DepartmentNameMustBeUnique);
         }
 
+        [Fact]
+        public async Task DeleteDepartment_Success()
+        {
+            // Arrange
+            var mockDepartmentId = _fixture.Create<int>();
+            var mockDepartment = _fixture.Create<Department>();
+
+            _mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(mockDepartment).Verifiable();
+
+            _mockEmployeeRepository.Setup(mer => mer.FindAsync(It.IsAny<Expression<Func<Employee, bool>>>())).ReturnsAsync(new List<Employee>());
+
+            _mockDepartmentRepository.Setup(mdr => mdr.RemoveAsync(It.IsAny<Department>())).Verifiable();
+
+            _mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(_mockDepartmentRepository.Object);
+            _mockUnitOfWork.Setup(m => m.EmployeeRepository).Returns(_mockEmployeeRepository.Object);
+
+            // Act
+            IDepartmentService sut = new DepartmentService(_mockUnitOfWork.Object, _mapper, _mockDepartmentValidator.Object);
+            var actual = await sut.DeleteDepartmentAsync(mockDepartmentId);
+
+            // Assert
+            _mockDepartmentRepository.Verify(x => x.RemoveAsync(It.IsAny<Department>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task DeleteDepartment_Error_DepartmentNotFound()
+        {
+            // Arrange
+            var mockDepartmentId = _fixture.Create<int>();
+            Department mockDepartment = null;
+   
+            _mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(mockDepartment).Verifiable();
+
+            _mockEmployeeRepository.Setup(mer => mer.FindAsync(It.IsAny<Expression<Func<Employee, bool>>>())).ReturnsAsync(new List<Employee>());
+
+            _mockDepartmentRepository.Setup(mdr => mdr.RemoveAsync(It.IsAny<Department>())).Verifiable();
+
+            _mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(_mockDepartmentRepository.Object);
+            _mockUnitOfWork.Setup(m => m.EmployeeRepository).Returns(_mockEmployeeRepository.Object);
+
+            // Act
+            IDepartmentService sut = new DepartmentService(_mockUnitOfWork.Object, _mapper, _mockDepartmentValidator.Object);
+            Func<Task> action = async () => await sut.DeleteDepartmentAsync(mockDepartmentId);
+
+            // Assert
+            await action.Should().ThrowAsync<ServiceException>(ValidationMessages.DepartmentNotFound);
+        }
+
+        [Fact]
+        public async Task DeleteDepartment_Error_DepartmentHasEmployees()
+        {
+            // Arrange
+            var mockDepartmentId = _fixture.Create<int>();
+            Department mockDepartment = _fixture.Create<Department>();
+            var mockEmployees = _fixture.CreateMany<Employee>(3).ToList();
+
+            _mockDepartmentRepository.Setup(mdr => mdr.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(mockDepartment).Verifiable();
+
+            _mockEmployeeRepository.Setup(mer => mer.FindAsync(It.IsAny<Expression<Func<Employee, bool>>>())).ReturnsAsync(mockEmployees);
+
+            _mockDepartmentRepository.Setup(mdr => mdr.RemoveAsync(It.IsAny<Department>())).Verifiable();
+
+            _mockUnitOfWork.Setup(m => m.DepartmentRepository).Returns(_mockDepartmentRepository.Object);
+            _mockUnitOfWork.Setup(m => m.EmployeeRepository).Returns(_mockEmployeeRepository.Object);
+
+            // Act
+            IDepartmentService sut = new DepartmentService(_mockUnitOfWork.Object, _mapper, _mockDepartmentValidator.Object);
+            Func<Task> action = async () => await sut.DeleteDepartmentAsync(mockDepartmentId);
+
+            // Assert
+            await action.Should().ThrowAsync<ServiceException>(ValidationMessages.DepartmentNotFound);
+        }
     }
 }

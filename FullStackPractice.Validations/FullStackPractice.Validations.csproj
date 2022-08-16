@@ -13,8 +13,4 @@
     <ProjectReference Include="..\FullStackPractice.Repository\FullStackPractice.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Department\" />
-  </ItemGroup>
-
 </Project>
