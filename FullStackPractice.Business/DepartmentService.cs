@@ -83,6 +83,13 @@ namespace FullStackPractice.Business
 
             if (validationResult.IsValid)
             {
+                var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(departmentEntity.DepartmentId);
+
+                if (department == null)
+                {
+                    throw new ServiceException(ValidationMessages.DepartmentNotFound);
+                }
+
                 var departmentWithSameName = await _unitOfWork.DepartmentRepository
                     .FindAsync(x => x.DepartmentName == departmentEntity.DepartmentName && x.DepartmentId != departmentEntity.DepartmentId);
 

@@ -716,3 +716,5 @@ FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/BCrypt.Net-Core.dll
 FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/Fare.dll
 FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Security.dll
 FullStackPractice.UnitTests/bin/Debug/netcoreapp3.1/FullStackPractice.Security.pdb
+FullStackPractice/bin/Debug/netcoreapp3.1/FluentAssert.dll
+FullStackPractice/bin/Debug/netcoreapp3.1/FluentAssertions.dll
