@@ -11,7 +11,7 @@ namespace FullStackPractice.Common.AutoMapper
             CreateMap<Department, DepartmentDto>();
             CreateMap<DepartmentDto, Department>();
 
-            CreateMap<Employee, EmployeeDto>();
+            CreateMap<Employee, EmployeeDto>().ForMember(x=>x.Password, opt => opt.Ignore());
             CreateMap<EmployeeDto, Employee>();
         }
     }

@@ -31,6 +31,8 @@ using System.Text;
 using FullStackPractice.Validations.Interfaces;
 using System.Security;
 using FullStackPractice.Security;
+using FullStackPractice.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace FullStackPractice
 {
@@ -92,9 +94,10 @@ namespace FullStackPractice
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Validators
-            services.AddTransient<CreateDepartmentValidator>();
-            services.AddTransient<UpdateDepartmentValidator>();
-            services.AddTransient<DeleteDepartmentValidator>();
+            services.AddValidatorsFromAssemblyContaining<DepartmentValidator>();
+
+            services.AddTransient<DepartmentValidator>();
+
             services.AddTransient<CreateEmployeeValidator>();
             services.AddTransient<UpdateEmployeeValidator>();
             services.AddTransient<DeleteEmployeeValidator>();
@@ -107,6 +110,7 @@ namespace FullStackPractice
 
             services.AddTransient<IServiceWrapper, ServiceWrapper>();
             services.AddTransient<ISecurityManager, Security.SecurityManager>();
+       
 
             services.AddRazorPages();
 

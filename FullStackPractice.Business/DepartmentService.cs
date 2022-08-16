@@ -21,13 +21,13 @@ namespace FullStackPractice.Business
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IValidationManager _validator;
+        private readonly IValidator<Department> _departmentValidator;
 
-        public DepartmentService(IUnitOfWork unitOfWork, IMapper mapper, IValidationManager validator)
+        public DepartmentService(IUnitOfWork unitOfWork, IMapper mapper, IValidator<Department> departmentValidator)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _validator = validator;
+            _departmentValidator = departmentValidator;
         }
 
         public async Task<List<DepartmentDto>> GetAllDepartmentsAsync()
@@ -50,16 +50,24 @@ namespace FullStackPractice.Business
         {
             var newDepartmentEntity = _mapper.Map<Department>(departmentDto);
 
-            var validationResult = await _validator.CreateDepartment.ValidateAsync(newDepartmentEntity);
+            var validationResult = await _departmentValidator.ValidateAsync(newDepartmentEntity);
 
             if (validationResult.IsValid)
             {
-                await _unitOfWork.DepartmentRepository.AddAsync(newDepartmentEntity);
-                await _unitOfWork.Complete();
+                var departmentWithSameName = await _unitOfWork.DepartmentRepository.FindAsync(x => x.DepartmentName == newDepartmentEntity.DepartmentName);
+                if (departmentWithSameName.Any())
+                {
+                    throw new ServiceException(ValidationMessages.DepartmentNameMustBeUnique);
+                } 
+                else
+                {
+                    await _unitOfWork.DepartmentRepository.AddAsync(newDepartmentEntity);
+                    await _unitOfWork.Complete();
 
-                var result = _mapper.Map<DepartmentDto>(newDepartmentEntity);
+                    var result = _mapper.Map<DepartmentDto>(newDepartmentEntity);
 
-                return result;
+                    return result;
+                }
             }
             else
             {
@@ -71,15 +79,26 @@ namespace FullStackPractice.Business
         {
             var departmentEntity = _mapper.Map<Department>(departmentDto);
 
-            var validationResult = await _validator.UpdateDepartment.ValidateAsync(departmentEntity);
+            var validationResult = await _departmentValidator.ValidateAsync(departmentEntity);
 
             if (validationResult.IsValid)
             {
-                await _unitOfWork.DepartmentRepository.UpdateAsync(departmentEntity);
-                await _unitOfWork.Complete();
+                var departmentWithSameName = await _unitOfWork.DepartmentRepository
+                    .FindAsync(x => x.DepartmentName == departmentEntity.DepartmentName && x.DepartmentId != departmentEntity.DepartmentId);
 
-                var result = _mapper.Map<DepartmentDto>(departmentEntity);
-                return result;
+                if (departmentWithSameName.Any())
+                {
+                    throw new ServiceException(ValidationMessages.DepartmentNameMustBeUnique);
+                }
+                else
+                {
+                    await _unitOfWork.DepartmentRepository.UpdateAsync(departmentEntity);
+                    await _unitOfWork.Complete();
+
+                    var result = _mapper.Map<DepartmentDto>(departmentEntity);
+
+                    return result;
+                }
             }
             else
             {
@@ -96,17 +115,17 @@ namespace FullStackPractice.Business
                 throw new ServiceException(ValidationMessages.DepartmentNotFound);
             }
 
-            var validationResult = await _validator.DeleteDepartment.ValidateAsync(department);
-            if (validationResult.IsValid)
+            var employees = await _unitOfWork.EmployeeRepository.FindAsync(x => x.DepartmentId == id);
+            if (employees.Count() > 0)
+            {
+                throw new ServiceException(ValidationMessages.DepartmentToBeDeletedMustNotHaveEmployees);
+            } 
+            else
             {
                 await _unitOfWork.DepartmentRepository.RemoveAsync(department);
                 await _unitOfWork.Complete();
 
                 return true;
-            }
-            else
-            {
-                throw new ServiceException(validationResult.Errors.First().ErrorMessage);
             }
         }
     }

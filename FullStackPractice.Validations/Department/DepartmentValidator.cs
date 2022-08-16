@@ -10,19 +10,14 @@ using System.Threading.Tasks;
 
 namespace FullStackPractice.Validations
 {
-    public class UpdateDepartmentValidator : AbstractValidator<Department>
+    public class DepartmentValidator : AbstractValidator<Department>
     {
         private IUnitOfWork _unitOfWork;
 
-        public UpdateDepartmentValidator(IUnitOfWork unitOfWork)
+        public DepartmentValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             RuleFor(x => x.DepartmentName).NotEmpty().WithMessage(ValidationMessages.DepartmentNameMustNotBeEmpty);
-            RuleFor(x => x.DepartmentName).MustAsync(async (departmentName, cancellation) =>
-            {
-                var departments = await _unitOfWork.DepartmentRepository.FindAsync(x => x.DepartmentName == departmentName);
-                return departments.Count() == 0;
-            }).WithMessage(ValidationMessages.DepartmentNameMustBeUnique);
         }
     }
 }

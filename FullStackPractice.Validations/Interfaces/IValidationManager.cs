@@ -6,11 +6,7 @@ namespace FullStackPractice.Validations.Interfaces
 {
     public interface IValidationManager
     {
-        public CreateDepartmentValidator CreateDepartment { get; set; }
-
-        public UpdateDepartmentValidator UpdateDepartment { get; set; }
-
-        public DeleteDepartmentValidator DeleteDepartment { get; set; }
+        public DepartmentValidator Department { get; set; }
 
         public CreateEmployeeValidator CreateEmployee { get; set; }
 
