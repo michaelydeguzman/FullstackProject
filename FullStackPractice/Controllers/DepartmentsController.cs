@@ -26,7 +26,7 @@ namespace FullStackPractice.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> GetDepartments()
         {
             var departments = await _serviceWrapper.DepartmentService.GetAllDepartmentsAsync();
